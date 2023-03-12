@@ -5,6 +5,10 @@ body{
   font-weight: 600;
   }
   
+  h1{
+    padding: 15px 0 15px 20px;
+  }
+  
   .accordion{
     width: 90%;
     margin: 10px auto;
@@ -18,20 +22,22 @@ body{
     border-bottom:  solid #b1b3cd;
     display: block;
     min-height: 90px;
+    transition: 0.5s
   }
   .mem-title{
     position: absolute;
-    height: 100%;
-    width: 90%;
+    height: 85%;
+    width: 80%;
     padding: 0 20px;
     z-index: 2;
+    transition: 0.5s
   }
   
   .mem-content{
     padding: 50px 20px 20px 20px;
     height: 0;
-    transition-property: height;
-    transition-duration: 1s;
+    transition-property: all;
+    transition: 0.5s
   }
   
   .mem-input{
@@ -39,24 +45,37 @@ body{
   }
   
   .accordion-item span {
-      width: 0.7em;
-      height: 0.15em;
+    width: 0.7em;
+    height: 0.15em;
     background-color: #5242ff;
   }
   
   .left-span{
     position: absolute;
-      top: 37px;
-      right: 27px;
+    top: 10px;
+    right: 27px;
     rotate: 45deg;
     z-index: 1;
+    transition-property: all;
+    transition-duration: 1s;
   }
+  
+  .left-span.first-left{
+    top: 28px;
+  }
+  
   .right-span{
     position: absolute;
-      top: 37px;
-      right: 20px;
+    top: 10px;
+    right: 20px;
     rotate: 135deg;
     z-index: 1;
+    transition-property: all;
+    transition-duration: 1s;
+  }
+  
+  .first-right.right-span{
+    top: 28px;
   }
   
   .mem-img{
@@ -64,11 +83,15 @@ body{
     display: block;
     margin: 0 auto;
     transition-property: all;
-    transition-duration: 1s;
+    transition: 0.5s
   }
   
   .mem-input:checked ~ .mem-content{
     height: auto;
+  }
+  
+  .mem-title:active{
+    background-color: #ffffff4b;
   }
   
   .mem-input:checked ~ .mem-content .mem-img{
@@ -92,15 +115,92 @@ body{
   
   .mem-input:checked ~ .left-span{
     rotate: -45deg;
-    transition-property: all;
-    transition-duration: 1s;
   }
   .mem-input:checked ~ .right-span{
     rotate: 225deg;
-    transition-property: all;
-    transition-duration: 1s;
   }
   
   .mem-input:checked ~ .mem-title{
     color: #5242ff;
+  }
+  
+  @media (min-width: 820px) {
+    body{
+    font-size: 20px;
+      }
+  
+    .left-span{
+      right: 30px;
+    }
+    .mem-title{
+      width: 90%;
+      height: 100%;
+    }
+  
+  }
+  
+  @media (min-width: 1180px) {
+    body{
+      font-size: 24px;
+        }
+  
+    .accordion{
+      width: 80%;
+      cursor: pointer;
+    }
+  
+    .mem-title{
+      cursor: pointer;
+    }
+    
+    .accordion-item span {
+      cursor: pointer;
+      width: 0.7em;
+      height: 0.15em;
+      opacity: 0;
+    }
+    .accordion:hover .accordion-item span{
+      opacity: 1;
+      background-color: #5242ff;
+    }
+    .accordion:hover .mem-title{
+    color: #5242ff;
+    }
+  
+    .mem-input:checked ~ .mem-content,.mem-input:not(:checked) ~ .mem-content{
+      height: auto;
+    }
+  
+    .mem-input:checked ~ .mem-content .mem-img{
+      animation-name: appearance;
+      width: 50%;
+      height: 80%;
+    }
+    
+    .accordion-item:hover .mem-input:not(:checked) ~ .mem-content .mem-img{
+      animation-name: appearance;
+      width: 50%;
+      height: 80%;
+    } 
+    
+    .accordion-item:hover .mem-input:not(:checked) ~ .left-span{
+      rotate: -45deg;
+    }
+  
+    .accordion-item:hover .mem-input:not(:checked) ~ .right-span{
+      rotate: 225deg;
+    }
+  
+    @keyframes appearance {
+      0% {
+        width: 0;
+        height: 0;
+      }
+      100% {
+      width: 50%;
+      height: 80%;
+      }
+    }
+  
+  
   }
